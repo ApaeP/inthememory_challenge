@@ -5,7 +5,7 @@
 <%= form_tag root_path, method: :get do %>
   <%= select_tag :country, options_for_select(@all_countries), include_blank: 'All Countries' %>
   <%= submit_tag 'Search' %>
-<% end -%>
+<% end %>
 
 
 <div class="summary-view">
