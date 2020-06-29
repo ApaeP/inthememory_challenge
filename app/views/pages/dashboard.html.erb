@@ -1,5 +1,5 @@
-<div>
-  <span>MEMORY</span>
+<div class="navbar">
+  <span id="nav-title">MEMORY</span>
 </div>
 
 <%= form_tag root_path, method: :get do %>
@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<div class="monthly-ciew">
-  <%= column_chart @sellings.group_by_month(:date, format: "%B").count %>
+<div class="monthly-view">
+  <%= column_chart @sellings.group_by_month(:date, format: "%B").count, xtitle: "Month", ytitle: "Sellings" %>
 </div>
 

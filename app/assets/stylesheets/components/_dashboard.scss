@@ -1,0 +1,19 @@
+.navbar {
+  width: 100vw;
+  height: 6vh;
+  background-color: rgba(6, 153, 146, 1);
+  #nav-title {
+    margin-left: 2rem;
+    font-size: 1.2rem;
+  }
+}
+
+.summary-view {
+  margin: 2vh;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.monthly-view {
+  margin: 2vh;
+}

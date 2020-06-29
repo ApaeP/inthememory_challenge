@@ -13,6 +13,7 @@ puts "Create DB from CSV"
 #Create arrays for import gem
 sellings = []
 customers = []
+customer_ids = []
 nb = 0
 
 CSV.foreach(csv_path, csv_options) do |row|
@@ -28,7 +29,8 @@ CSV.foreach(csv_path, csv_options) do |row|
     quantity: row['quantity'],
     unit_price: row['unit_price'])
 
-  unless Customer.find_by(customer_id: row['customer_id'])
+  unless customer_ids.include?(row['customer_id'])
+    customer_ids << row['customer_id']
     customers << Customer.new(customer_id: row['customer_id'], country: row['country'])
   end
 

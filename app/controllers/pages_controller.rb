@@ -9,7 +9,7 @@ class PagesController < ApplicationController
     @total_revenue = Selling.total_revenue(chosen_country)
     @average_revenue = @total_revenue.fdiv(Selling.number_of_sellings(chosen_country))
     @number_of_customers = Customer.number_of_customers(chosen_country)
-    @all_countries = Selling.pluck(:country).uniq
+    @all_countries = Customer.pluck(:country).uniq
   end
 
 end
