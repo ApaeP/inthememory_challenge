@@ -40,14 +40,19 @@ CSV.foreach(csv_path, csv_options) do |row|
 end
 puts "\n CSV Parsing finished\n "
 
-puts "\n Importation of arrays in DB"
-puts "\n Sellings..."
-Selling.import(sellings)
-puts "Sellings import done\n "
-puts "\n Customers..."
-Customer.import(customers)
-puts "Customers import done\n "
-puts "\n Arrays imported"
+if Rails.env.production?
+  sellings.each { |sel| sel.create! }
+  customers.each { |cus| cus.create! }
+else
+  puts "\n Importation of arrays in DB"
+  puts "\n Sellings..."
+  Selling.import(sellings)
+  puts "Sellings import done\n "
+  puts "\n Customers..."
+  Customer.import(customers)
+  puts "Customers import done\n "
+  puts "\n Arrays imported"
+end
 
 puts "DB created"
 
