@@ -5,16 +5,16 @@
 <div class="country-form">
   <%= form_tag root_path, method: :get do %>
     <%= select_tag :country, options_for_select(@all_countries), include_blank: 'All Countries' %>
-    <%= submit_tag 'Search' %>
+    <%#= submit_tag 'Search' %>
   <% end -%>
 </div>
 
-<h1 class="dashboard-title"><%= ( params[:country] && params[:country] != '' ) ? params[:country] : 'All Countries' %></h1>
+<h1 class="dashboard-title"><%= ( params[:country] && params[:country] != '' ) ? params[:country].upcase : 'ALL COUNTRIES' %></h1>
 
 <div class="summary-view">
-  <div class="card">
+  <div class="info-card">
     <div class="card-title-container">
-      <p class="card-title">Revenue</p>
+      <p class="card-title">REVENUE</p>
     </div>
     <hr>
     <div class="card-content-container">
@@ -22,9 +22,9 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="info-card">
     <div class="card-title-container">
-      <p class="card-title">Average Revenue per Order</p>
+      <p class="card-title">AVERAGE REVENUE PER ORDER</p>
     </div>
     <hr>
     <div class="card-content-container">
@@ -32,9 +32,9 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="info-card">
     <div class="card-title-container">
-      <p class="card-title">Unique Customers</p>
+      <p class="card-title">CUSTOMERS</p>
     </div>
     <hr>
     <div class="card-content-container">
@@ -44,5 +44,5 @@
 </div>
 
 <div class="monthly-view">
-  <%= column_chart @sellings.group_by_month(:date, format: "%B").count, xtitle: "Month", ytitle: "Sellings" %>
+  <%= column_chart @sellings.group_by_month(:date, format: "%B").count, xtitle: "Month", ytitle: "Sellings", colors: ["#069992"] %>
 </div>

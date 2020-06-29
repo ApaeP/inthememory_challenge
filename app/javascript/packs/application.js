@@ -11,4 +11,7 @@ import "bootstrap";
 // Internal imports
 
 document.addEventListener('turbolinks:load', () => {
+  document.querySelector('form').addEventListener('change', (e) => {
+    document.querySelector('form').submit()
+  })
 });
