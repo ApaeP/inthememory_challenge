@@ -2,30 +2,47 @@
   <span id="nav-title">MEMORY</span>
 </div>
 
-<%= form_tag root_path, method: :get do %>
-  <%= select_tag :country, options_for_select(@all_countries), include_blank: 'All Countries' %>
-  <%= submit_tag 'Search' %>
-<% end %>
+<div class="country-form">
+  <%= form_tag root_path, method: :get do %>
+    <%= select_tag :country, options_for_select(@all_countries), include_blank: 'All Countries' %>
+    <%= submit_tag 'Search' %>
+  <% end -%>
+</div>
 
+<h1 class="dashboard-title"><%= ( params[:country] && params[:country] != '' ) ? params[:country] : 'All Countries' %></h1>
 
 <div class="summary-view">
-  <div class="total-revenue-card">
-    <span>Total revenue</span>
-    <%= @total_revenue %>
+  <div class="card">
+    <div class="card-title-container">
+      <p class="card-title">Revenue</p>
+    </div>
+    <hr>
+    <div class="card-content-container">
+      <p class="card-info"><%= number_to_currency(@total_revenue, unit: '', separator: ',', delimiter: ' ') %> €</p>
+    </div>
   </div>
 
-  <div class="average-revenue-card">
-    <span>Average revenue per order</span>
-    <%= @average_revenue %>
+  <div class="card">
+    <div class="card-title-container">
+      <p class="card-title">Average Revenue per Order</p>
+    </div>
+    <hr>
+    <div class="card-content-container">
+      <p class="card-info"><%= number_to_currency(@average_revenue, unit: '', separator: ',', delimiter: ' ') %> €</p>
+    </div>
   </div>
 
-  <div class="nb-of-customers-card">
-    <span>number of unique customers</span>
-    <%= @number_of_customers %>
+  <div class="card">
+    <div class="card-title-container">
+      <p class="card-title">Unique Customers</p>
+    </div>
+    <hr>
+    <div class="card-content-container">
+      <p class="card-info"><%= @number_of_customers %></p>
+    </div>
   </div>
 </div>
 
 <div class="monthly-view">
   <%= column_chart @sellings.group_by_month(:date, format: "%B").count, xtitle: "Month", ytitle: "Sellings" %>
 </div>
-

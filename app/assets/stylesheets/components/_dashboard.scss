@@ -8,13 +8,55 @@
   }
 }
 
+.dashboard-title {
+  text-align: center;
+}
+
+.country-form {
+  margin: 5vh;
+  width: 90vw;
+  display: flex;
+  justify-content: center;
+}
+
 .summary-view {
   margin: 2vh;
   display: flex;
   justify-content: space-evenly;
+  .card {
+    min-width: 250px;
+    width: 25vw;
+    min-height: 250px;
+    height: 25vw;
+    padding: 2.5vw;
+    text-align: center;
+    background-color: rgba(6, 153, 146, 0.4);
+    hr {
+      margin: 0 !important;
+    }
+    .card-title-container {
+      height: 10vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .card-title {
+        margin-bottom: 2.5vw;
+        font-size: 1.5rem;
+      }
+    }
+    .card-content-container {
+      height: 10vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .card-info {
+        margin-top: 2.5vw;
+        font-size: 1.5rem;
+      }
+    }
+  }
 }
 
 .monthly-view {
-  margin: 2vh;
-
+  margin: 5vh 1vw 0 1vw;
 }
