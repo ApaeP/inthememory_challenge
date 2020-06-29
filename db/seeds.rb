@@ -38,7 +38,7 @@ CSV.foreach(csv_path, csv_options) do |row|
   p nb
 
   if Rails.env.production?
-   break if nb > 250000
+   break if nb >= 50000
   end
 end
 puts "\n CSV Parsing finished\n "
