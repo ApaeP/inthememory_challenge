@@ -35,7 +35,7 @@ CSV.foreach(csv_path, csv_options) do |row|
     customer_ids << row['customer_id']
     customers << Customer.new(customer_id: row['customer_id'], country: row['country'])
   end
-
+  p nb
    # break if nb > 50000
 end
 puts "\n CSV Parsing finished\n "
