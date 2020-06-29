@@ -37,25 +37,21 @@ CSV.foreach(csv_path, csv_options) do |row|
   end
   p nb
 
+  # le dyno heroku gratuit n'a pas l'air de supporter une requete de 400k+
   if Rails.env.production?
    break if nb >= 50000
   end
 end
 puts "\n CSV Parsing finished\n "
 
-# if Rails.env.production?
-#   sellings.each { |sel| sel.create! }
-#   customers.each { |cus| cus.create! }
-# else
-  puts "\n Importation of arrays in DB"
-  puts "\n Sellings..."
-  Selling.import(sellings)
-  puts "Sellings import done\n "
-  puts "\n Customers..."
-  Customer.import(customers)
-  puts "Customers import done\n "
-  puts "\n Arrays imported"
-# end
+puts "\n Importation of arrays in DB"
+puts "\n Sellings..."
+Selling.import(sellings)
+puts "Sellings import done\n "
+puts "\n Customers..."
+Customer.import(customers)
+puts "Customers import done\n "
+puts "\n Arrays imported"
 
 puts "DB created"
 

@@ -3,7 +3,7 @@
 </div>
 
 <div class="country-form">
-  <%= form_tag root_path, method: :get do %>
+  <%= form_tag root_path, method: :get, class: 'dash-country-form' do %>
     <%= select_tag :country, options_for_select(@all_countries), include_blank: 'All Countries' %>
     <%#= submit_tag 'Search' %>
   <% end -%>

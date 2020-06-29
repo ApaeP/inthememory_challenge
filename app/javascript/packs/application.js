@@ -11,7 +11,9 @@ import "bootstrap";
 // Internal imports
 
 document.addEventListener('turbolinks:load', () => {
-  document.querySelector('form').addEventListener('change', (e) => {
-    document.querySelector('form').submit()
-  })
+  if (document.querySelector('.dash-country-form')) {
+    document.querySelector('.dash-country-form').addEventListener('change', (e) => {
+      document.querySelector('.dash-country-form').submit()
+    })
+  }
 });
