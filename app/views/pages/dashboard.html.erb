@@ -17,3 +17,8 @@
   <%= @number_of_customers %>
 </div>
 
+<br>
+
+<%= column_chart Selling.group_by_month(:date, format: "%a").count %>
+
+
