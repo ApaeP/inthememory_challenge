@@ -3,39 +3,34 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    params[:country] ? chosen_country = params[:country] : chosen_country = 'all'
+    if params[:country] && params[:country] != ''
+      chosen_country = params[:country]
+      @sellings = Selling.where(country: chosen_country)
+    else
+      chosen_country = 'all'
+      @sellings = Selling.all
+    end
 
     @total_revenue = total_revenue(chosen_country)
     @average_revenue = @total_revenue.fdiv(number_of_sellings(chosen_country))
     @number_of_customers = number_of_customers(chosen_country)
+    @all_countries = Selling.pluck(:country).uniq
   end
 
   private
 
   def total_revenue(country)
     rev = 0
-    if country == 'all'
-      Selling.all.each { |sel| rev += (sel.unit_price * sel.quantity) }
-    else
-      Selling.where(country: country).each { |sel| rev += (sel.unit_price * sel.quantity) }
-    end
+    country == 'all' ? Selling.all.each { |sel| rev += (sel.unit_price * sel.quantity) } : Selling.where(country: country).each { |sel| rev += (sel.unit_price * sel.quantity) }
     rev
   end
 
   def number_of_sellings(country)
-    if country == 'all'
-      Selling.all.size
-    else
-      Selling.where(country: chosen_country).size
-    end
+    country == 'all' ? Selling.all.size : Selling.where(country: country).size
   end
 
   def number_of_customers(country)
-    if country == 'all'
-      Customer.all.size
-    else
-      Customer.where(country: country).size
-    end
+    country == 'all' ? Customer.all.size : Customer.where(country: country).size
   end
 
 end

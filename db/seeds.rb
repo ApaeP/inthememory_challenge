@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 require 'csv'
 
 csv_path = 'db/memory-tech-challenge-data.csv'
@@ -38,7 +30,7 @@ CSV.foreach(csv_path, csv_options) do |row|
   unless Customer.find_by(customer_id: row['customer_id'])
     customers << Customer.new(customer_id: row['customer_id'], country: row['country'])
   end
-   break if nb > 10000
+   break if nb > 50000
 end
 
 Selling.import(sellings)

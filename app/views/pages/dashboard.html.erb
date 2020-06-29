@@ -2,6 +2,12 @@
   <span>MEMORY</span>
 </div>
 
+<%= form_tag root_path, method: :get do %>
+  <%= select_tag :country, options_for_select(@all_countries), include_blank: 'all' %>
+  <%= submit_tag 'Search' %>
+<% end -%>
+
+
 <div class="total-revenue-card">
   <span>Total revenue</span>
   <%= @total_revenue %>
@@ -15,11 +21,9 @@
 <div class="nb-of-customers-card">
   <span>number of unique customers</span>
   <%= @number_of_customers %>
-
 </div>
 
 <br>
 
-<%= column_chart Selling.group_by_month(:date, format: "%a").count %>
-
+<%= column_chart @sellings.group_by_month(:date, format: "%B").count %>
 
