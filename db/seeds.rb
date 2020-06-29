@@ -10,13 +10,14 @@ puts "DB Destroyed\n "
 
 puts "Create DB from CSV"
 
-#Create an array for import
+#Create arrays for import gem
 sellings = []
 customers = []
 nb = 0
 
 CSV.foreach(csv_path, csv_options) do |row|
   nb += 1
+
   sellings << Selling.new(
     date: row['date'].to_date,
     customer_id: row['customer_id'],
@@ -30,7 +31,8 @@ CSV.foreach(csv_path, csv_options) do |row|
   unless Customer.find_by(customer_id: row['customer_id'])
     customers << Customer.new(customer_id: row['customer_id'], country: row['country'])
   end
-   break if nb > 50000
+
+   # break if nb > 50000
 end
 
 Selling.import(sellings)
