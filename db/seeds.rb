@@ -36,14 +36,17 @@ CSV.foreach(csv_path, csv_options) do |row|
     customers << Customer.new(customer_id: row['customer_id'], country: row['country'])
   end
   p nb
-   # break if nb > 50000
+
+  if Rails.env.production?
+   break if nb > 250000
+  end
 end
 puts "\n CSV Parsing finished\n "
 
-if Rails.env.production?
-  sellings.each { |sel| sel.create! }
-  customers.each { |cus| cus.create! }
-else
+# if Rails.env.production?
+#   sellings.each { |sel| sel.create! }
+#   customers.each { |cus| cus.create! }
+# else
   puts "\n Importation of arrays in DB"
   puts "\n Sellings..."
   Selling.import(sellings)
@@ -52,7 +55,7 @@ else
   Customer.import(customers)
   puts "Customers import done\n "
   puts "\n Arrays imported"
-end
+# end
 
 puts "DB created"
 
