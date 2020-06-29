@@ -11,11 +11,13 @@ puts "DB Destroyed\n "
 puts "Create DB from CSV"
 
 #Create arrays for import gem
+puts "initialize empty arrays"
 sellings = []
 customers = []
 customer_ids = []
 nb = 0
 
+puts "\n Start parsing CSV file\n "
 CSV.foreach(csv_path, csv_options) do |row|
   nb += 1
 
@@ -36,9 +38,16 @@ CSV.foreach(csv_path, csv_options) do |row|
 
    # break if nb > 50000
 end
+puts "\n CSV Parsing finished\n "
 
+puts "\n Importation of arrays in DB"
+puts "\n Sellings..."
 Selling.import(sellings)
+puts "Sellings import done\n "
+puts "\n Customers..."
 Customer.import(customers)
+puts "Customers import done\n "
+puts "\n Arrays imported"
 
 puts "DB created"
 
